@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 .tool-versions
 .vscode
+src/types/components.d.ts
+src/types/auto-imports.d.ts
