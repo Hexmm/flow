@@ -1,34 +1,36 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
-<body>
-<style>
-    .container {
+  </head>
+  <body>
+    <style>
+      .container {
         width: 300px;
         height: 200px;
         overflow-y: scroll;
         scroll-snap-type: y mandatory; /* 垂直方向的滚动吸附 */
-    }
+      }
 
-    .item {
+      .item {
         height: 100px;
         scroll-snap-align: start; /* 吸附到容器的顶部 */
         border: 1px solid #ccc;
         margin-bottom: 20px;
-    }
-</style>
+      }
+    </style>
 
-<div class="container">
-    <div class="item">Item 1</div>
-    <div class="item">Item 2</div>
-    <div class="item">Item 3</div>
-    <div class="item">Item 4</div>
-</div>
-</body>
+    <div class="container">
+      <div class="item">Item 1</div>
+      <div class="item">Item 2</div>
+      <div class="item">Item 3</div>
+      <div class="item">Item 4</div>
+    </div>
+  </body>
 </html>
