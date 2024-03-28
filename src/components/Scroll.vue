@@ -1,70 +1,77 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import {onMounted} from "@vue/runtime-core";
+import {onMounted} from "vue";
 
 
 const list = [
-  "Hello World",
-  "hello",
-  "Taycan",
-  "Palamela",
-  "Macant",
-  "Model"
-]
+	"Hello World",
+	"hello",
+	"Taycan",
+	"Palamela",
+	"Macant",
+	"Model"
+];
 
-const pageSize = list.length
+const pageSize = list.length;
 
-const renderList = ref(list)
+const renderList = ref(list);
 let realWidth = ref(0);
 
 onMounted(() => {
-  realWidth.value = tabs.value.scrollWidth;
-  tabs.value.scrollLeft = 60;
-  console.log('onMounted do realWidth.value => ', realWidth.value)
-})
+	realWidth.value = tabs.value.scrollWidth;
+	tabs.value.scrollLeft = 60;
+	console.log("onMounted do realWidth.value => ", realWidth.value);
+});
 
-const onscroll = (e) => {
-  const scrollWidth = tabs.value.scrollWidth
-  const scrollLeft = tabs.value.scrollLeft
-  const clientWidth = tabs.value.clientWidth
-  const shouldMoreRight = scrollWidth - (clientWidth + scrollLeft) < 50
-  const shouldMoreLeft = scrollLeft < 50
-  console.log('shouldMoreRight.value => res', scrollWidth - (clientWidth + scrollLeft))
-  if (shouldMoreRight) {
-    renderList.value = renderList.value.concat(list)
-    console.log('shouldMoreRight.value => called', shouldMoreRight)
-    if (renderList.value.length === (3 * pageSize)) {
-      renderList.value = renderList.value.splice(0, pageSize)
-    }
-  }
-  console.log('shouldMoreLeft.value => ', shouldMoreLeft)
-  if (shouldMoreLeft) {
+const onscroll = () => {
+	const scrollWidth = tabs.value.scrollWidth;
+	const scrollLeft = tabs.value.scrollLeft;
+	const clientWidth = tabs.value.clientWidth;
+	const shouldMoreRight = scrollWidth - (clientWidth + scrollLeft) < 50;
+	const shouldMoreLeft = scrollLeft < 50;
+	console.log("shouldMoreRight.value => res", scrollWidth - (clientWidth + scrollLeft));
+	if (shouldMoreRight) {
+		renderList.value = renderList.value.concat(list);
+		console.log("shouldMoreRight.value => called", shouldMoreRight);
+		if (renderList.value.length === (3 * pageSize)) {
+			renderList.value = renderList.value.splice(0, pageSize);
+		}
+	}
+	console.log("shouldMoreLeft.value => ", shouldMoreLeft);
+	if (shouldMoreLeft) {
 
-    renderList.value = list.concat(renderList.value)
-    tabs.value.scrollLeft = realWidth.value + scrollLeft;
-    if (renderList.value.length === (3 * pageSize)) {
-      renderList.value.splice(renderList.value.length - pageSize, pageSize)
-    }
-    console.log('shouldMoreLeft.value => called')
-    console.log('renderList.value.length => ', renderList.value.length)
-  }
-  console.log('scrollWidth => ', scrollWidth)
-  console.log('scrollLeft => ', scrollLeft)
-  console.log('clientWidth => ', clientWidth)
-  console.log('realWidth => ', realWidth.value)
-}
+		renderList.value = list.concat(renderList.value);
+		tabs.value.scrollLeft = realWidth.value + scrollLeft;
+		if (renderList.value.length === (3 * pageSize)) {
+			renderList.value.splice(renderList.value.length - pageSize, pageSize);
+		}
+		console.log("shouldMoreLeft.value => called");
+		console.log("renderList.value.length => ", renderList.value.length);
+	}
+	console.log("scrollWidth => ", scrollWidth);
+	console.log("scrollLeft => ", scrollLeft);
+	console.log("clientWidth => ", clientWidth);
+	console.log("realWidth => ", realWidth.value);
+};
 
-const tabs = ref(null)
+const tabs = ref(null);
 </script>
 
 <template>
-  <a-button type="primary">Primary Button</a-button>
+  <a-button type="primary">
+    Primary Button
+  </a-button>
   <div class="wrapper">
-    <div class="ul"
-         @scroll="onscroll"
-         ref="tabs"
+    <div
+      ref="tabs"
+      class="ul"
+      @scroll="onscroll"
     >
-      <div class="li" v-for="item in renderList" :key="item">
+      <div
+        v-for="item in renderList"
+        :key="item"
+        class="li"
+      >
         <span>{{ item }}</span>
       </div>
     </div>
